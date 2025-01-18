@@ -117,4 +117,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
+  programs.zsh.enable = true;
+  users.users.vasi.shell = pkgs.zsh;
 }
