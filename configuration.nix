@@ -121,4 +121,13 @@
   users.users.vasi.shell = pkgs.zsh;
 
   programs.git.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+    };
+  };
 }
