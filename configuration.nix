@@ -119,4 +119,6 @@
 
   programs.zsh.enable = true;
   users.users.vasi.shell = pkgs.zsh;
+
+  programs.git.enable = true;
 }
