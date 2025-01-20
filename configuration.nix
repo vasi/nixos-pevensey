@@ -52,6 +52,7 @@
   };
   environment.systemPackages = with pkgs; [
     kdePackages.kate
+    kdePackages.ksshaskpass
   ];
 
   services.openssh.enable = true;
