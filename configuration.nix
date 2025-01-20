@@ -15,6 +15,12 @@
   boot.loader.efi.efiSysMountPoint = "/efi";
   boot.loader.efi.canTouchEfiVariables = false;
 
+  boot.kernelParams = [ "zswap.enabled=1" ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 9 * 1024;
+  }];
+
   networking.hostName = "pevensey";
   networking.networkmanager.enable = true;
 
