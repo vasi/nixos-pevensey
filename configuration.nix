@@ -45,9 +45,11 @@
     shell = pkgs.zsh;
   };
 
-  programs.firefox.enable = true;
-  programs.git.enable = true;
-  programs.zsh.enable = true;
+  programs = {
+    firefox.enable = true;
+    git.enable = true;
+    zsh.enable = true;
+  };
   environment.systemPackages = with pkgs; [
     kdePackages.kate
   ];
