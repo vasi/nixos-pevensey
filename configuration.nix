@@ -55,6 +55,7 @@
   environment.systemPackages = with pkgs; [
     kdePackages.kate
     kdePackages.ksshaskpass
+    signal-desktop
   ];
 
   services.openssh.enable = true;
