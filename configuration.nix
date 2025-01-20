@@ -11,7 +11,9 @@
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
+  boot.loader.efi.efiSysMountPoint = "/efi";
+  boot.loader.efi.canTouchEfiVariables = false;
 
   networking.hostName = "pevensey";
   networking.networkmanager.enable = true;
