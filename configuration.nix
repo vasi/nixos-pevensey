@@ -87,6 +87,12 @@
       };
     }
 
+    { services.undervolt = {
+        enable = true;
+        coreOffset = -100;
+      };
+    }
+
     { users.users.vasi = {
         isNormalUser = true;
         description = "Dave Vasilevsky";
