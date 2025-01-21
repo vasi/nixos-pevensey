@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./overlays.nix
-    ];
+  imports = [
+    <nixos-hardware/dell/xps/15-7590>
+    ./hardware-configuration.nix
+    ./overlays.nix
+  ];
 
   # Original release, used for state locations. Don't change!
   system.stateVersion = "24.11";
