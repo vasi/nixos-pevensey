@@ -3,6 +3,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./overlays.nix
     ];
 
   # Original release, used for state locations. Don't change!
@@ -37,6 +38,8 @@
   };
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+
+  services.switcherooControl.enable = true;
 
   services.printing.enable = true;
 
