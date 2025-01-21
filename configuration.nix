@@ -17,6 +17,12 @@
       boot.loader.efi.canTouchEfiVariables = false;
     }
 
+    { boot.plymouth.enable = true;
+      boot.initrd.verbose = false;
+      boot.consoleLogLevel = 0;
+      boot.kernelParams = [ "quiet" "udev.log_level=3" ];
+    }
+
     { boot.kernelParams = [ "zswap.enabled=1" ];
       swapDevices = [{
         device = "/swapfile";
