@@ -68,7 +68,14 @@
       powerManagement.powertop.enable = true;
     }
 
-    { services.printing.enable = true; }
+    { services.printing.enable = true;
+      hardware.sane.extraBackends = [ pkgs.sane-airscan ];
+      environment.systemPackages = [
+        (pkgs.kdePackages.skanpage.override {
+          tesseractLanguages = ["eng" "fra"];
+        })
+      ];
+    }
 
     { hardware.pulseaudio.enable = false;
       security.rtkit.enable = true;
