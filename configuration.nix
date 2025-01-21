@@ -94,8 +94,11 @@
         zsh.enable = true;
       };
       environment.systemPackages = with pkgs; [
-        kdePackages.kate
+        file
+
         kdePackages.ksshaskpass
+
+        kdePackages.kate
         signal-desktop
       ];
     }
