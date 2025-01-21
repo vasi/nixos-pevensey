@@ -57,8 +57,6 @@
         layout = "us";
         variant = "";
       };
-      services.displayManager.sddm.enable = true;
-      services.desktopManager.plasma6.enable = true;
     }
 
     { services.switcherooControl.enable = true; }
@@ -101,6 +99,14 @@
       };
     }
 
+    { services.displayManager.sddm.enable = true;
+      services.desktopManager.plasma6.enable = true;
+      environment.systemPackages = with pkgs; [
+        ksshaskpass
+      ];
+    }
+
+
     { programs = {
         firefox.enable = true;
         git.enable = true;
@@ -108,8 +114,6 @@
       };
       environment.systemPackages = with pkgs; [
         file
-
-        kdePackages.ksshaskpass
 
         kdePackages.kate
         signal-desktop
