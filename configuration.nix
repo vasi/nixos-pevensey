@@ -40,6 +40,8 @@
   services.desktopManager.plasma6.enable = true;
 
   services.switcherooControl.enable = true;
+  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  hardware.nvidia.open = true;
 
   services.printing.enable = true;
 
