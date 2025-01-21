@@ -118,6 +118,7 @@
 
         kdePackages.kate
         signal-desktop
+        whatsapp-for-linux
         emote
       ];
     }
