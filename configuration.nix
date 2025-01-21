@@ -41,6 +41,10 @@
 
   services.switcherooControl.enable = true;
 
+  services.power-profiles-daemon.enable = false;
+  services.tlp.enable = true;
+  powerManagement.powertop.enable = true;
+
   services.printing.enable = true;
 
   hardware.pulseaudio.enable = false;
