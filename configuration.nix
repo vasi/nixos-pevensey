@@ -17,6 +17,8 @@
       boot.loader.efi.canTouchEfiVariables = false;
     }
 
+    { boot.initrd.systemd.enable = true; }
+
     { boot.plymouth.enable = true;
       boot.initrd.verbose = false;
       boot.consoleLogLevel = 0;
