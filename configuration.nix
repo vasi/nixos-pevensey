@@ -94,7 +94,7 @@
     { users.users.vasi = {
         isNormalUser = true;
         description = "Dave Vasilevsky";
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" "ydotool" ];
         shell = pkgs.zsh;
       };
     }
@@ -111,12 +111,14 @@
         firefox.enable = true;
         git.enable = true;
         zsh.enable = true;
+        ydotool.enable = true;
       };
       environment.systemPackages = with pkgs; [
         file
 
         kdePackages.kate
         signal-desktop
+        emote
       ];
     }
 
