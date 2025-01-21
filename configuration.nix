@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    <nixos-hardware/dell/xps/15-7590>
+    <nixos-hardware/dell/xps/15-7590/nvidia>
     ./hardware-configuration.nix
     ./overlays.nix
   ];
@@ -40,8 +40,6 @@
   services.desktopManager.plasma6.enable = true;
 
   services.switcherooControl.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
-  hardware.nvidia.open = true;
 
   services.printing.enable = true;
 
