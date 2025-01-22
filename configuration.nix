@@ -145,13 +145,20 @@
         direnv.enable = true;
       };
       environment.systemPackages = with pkgs; [
+        # CLI
         file
         rclone
         ripgrep
+        ncdu
 
+        # Admin
+        kdePackages.filelight
+
+        # Office
         kdePackages.kate
         libreoffice
 
+        # Net
         google-chrome
         signal-desktop
         zoom-us
