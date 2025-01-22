@@ -132,9 +132,6 @@
         qtbase
         ksshaskpass
         emote
-        kaccounts-integration
-        kaccounts-providers
-        kio-gdrive
       ];
     }
 
