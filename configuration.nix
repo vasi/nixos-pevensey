@@ -119,10 +119,18 @@
       };
     }
 
+    { virtualisation.vmware.host.enable = true;
+      virtualisation.vmware.host.package = pkgs.vmware-workstation.override {
+        enableMacOSGuests = true;
+      };
+
+    }
+
     { services.displayManager.sddm.enable = true;
       services.desktopManager.plasma6.enable = true;
       environment.systemPackages = with pkgs; with kdePackages; [
         ksshaskpass
+        emote
         kaccounts-integration
         kaccounts-providers
         kio-gdrive
@@ -141,9 +149,9 @@
         rclone
 
         kdePackages.kate
+
         google-chrome
         signal-desktop
-        emote
         zoom-us
       ];
     }
