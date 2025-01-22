@@ -117,8 +117,8 @@
         file
 
         kdePackages.kate
+        google-chrome
         signal-desktop
-        whatsapp-for-linux
         emote
       ];
     }
