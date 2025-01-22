@@ -143,6 +143,7 @@
         zsh.enable = true;
         ydotool.enable = true;
         direnv.enable = true;
+        steam.enable = true;
       };
       environment.systemPackages = with pkgs; [
         # CLI
@@ -153,9 +154,6 @@
         pixz
         pv
 
-        # Admin
-        kdePackages.filelight
-
         # Office
         kdePackages.kate
         libreoffice
@@ -165,6 +163,9 @@
         signal-desktop
         zoom-us
         vlc
+
+        # Misc
+        kdePackages.filelight
       ];
     }
 
