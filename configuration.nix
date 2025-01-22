@@ -91,6 +91,26 @@
       };
     }
 
+
+    { networking.hostId = "4a9dbe3c";
+      boot.supportedFilesystems = {
+        ext = true;
+        xfs = true;
+        btrfs = true;
+        vfat = true;
+        ntfs = true;
+        exfat = true;
+        apfs = true;
+        zfs = true;
+      };
+      environment.systemPackages = with pkgs; [
+        parted
+        gparted
+        gptfdisk
+        hfsprogs
+      ];
+    }
+
     { users.users.vasi = {
         isNormalUser = true;
         description = "Dave Vasilevsky";
@@ -123,28 +143,10 @@
         google-chrome
         signal-desktop
         emote
+        zoom-us
       ];
     }
 
     { services.openssh.enable = true; }
-
-    { networking.hostId = "4a9dbe3c";
-      boot.supportedFilesystems = {
-        ext = true;
-        xfs = true;
-        btrfs = true;
-        vfat = true;
-        ntfs = true;
-        exfat = true;
-        apfs = true;
-        zfs = true;
-      };
-      environment.systemPackages = with pkgs; [
-        parted
-        gparted
-        gptfdisk
-        hfsprogs
-      ];
-    }
   ];
 }
