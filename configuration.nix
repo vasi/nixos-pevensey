@@ -147,6 +147,7 @@
       environment.systemPackages = with pkgs; [
         file
         rclone
+        ripgrep
 
         kdePackages.kate
         libreoffice
