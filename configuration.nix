@@ -154,17 +154,18 @@
         pixz
         pv
 
-        # Office
-        kdePackages.kate
-        libreoffice
-
         # Net
         google-chrome
         signal-desktop
         zoom-us
         vlc
 
+        # Dev
+        kdePackages.kate
+        vscode-fhs
+
         # Misc
+        libreoffice
         kdePackages.filelight
       ];
     }
