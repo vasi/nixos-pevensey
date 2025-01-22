@@ -196,6 +196,9 @@
         nixd
         nixfmt-rfc-style
 
+        # Emu
+        minivmac
+
         # Misc
         libreoffice
         kdePackages.filelight
