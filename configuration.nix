@@ -101,8 +101,11 @@
 
     { services.displayManager.sddm.enable = true;
       services.desktopManager.plasma6.enable = true;
-      environment.systemPackages = with pkgs; [
+      environment.systemPackages = with pkgs; with kdePackages; [
         ksshaskpass
+        kaccounts-integration
+        kaccounts-providers
+        kio-gdrive
       ];
     }
 
