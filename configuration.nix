@@ -149,6 +149,7 @@
         rclone
 
         kdePackages.kate
+        libreoffice
 
         google-chrome
         signal-desktop
