@@ -138,6 +138,7 @@
       };
       environment.systemPackages = with pkgs; [
         file
+        rclone
 
         kdePackages.kate
         google-chrome
