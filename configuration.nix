@@ -143,6 +143,7 @@
         git.enable = true;
         zsh.enable = true;
         ydotool.enable = true;
+        direnv.enable = true;
       };
       environment.systemPackages = with pkgs; [
         file
