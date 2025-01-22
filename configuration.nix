@@ -164,6 +164,7 @@
         google-chrome
         signal-desktop
         zoom-us
+        vlc
       ];
     }
 
