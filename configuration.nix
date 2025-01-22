@@ -5,13 +5,15 @@
     ./hardware-configuration.nix
     ./overlays.nix
 
-    { # Original release, used for state locations. Don't change!
+    {
+      # Original release, used for state locations. Don't change!
       system.stateVersion = "24.11";
 
       nixpkgs.config.allowUnfree = true;
     }
 
-    { boot.loader.systemd-boot.enable = true;
+    {
+      boot.loader.systemd-boot.enable = true;
       boot.loader.systemd-boot.configurationLimit = 20;
       boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
       boot.loader.efi.efiSysMountPoint = "/efi";
@@ -20,20 +22,28 @@
 
     { boot.initrd.systemd.enable = true; }
 
-    { boot.plymouth.enable = true;
+    {
+      boot.plymouth.enable = true;
       boot.initrd.verbose = false;
       boot.consoleLogLevel = 0;
-      boot.kernelParams = [ "quiet" "udev.log_level=3" ];
+      boot.kernelParams = [
+        "quiet"
+        "udev.log_level=3"
+      ];
     }
 
-    { boot.kernelParams = [ "zswap.enabled=1" ];
-      swapDevices = [{
-        device = "/swapfile";
-        size = 9 * 1024;
-      }];
+    {
+      boot.kernelParams = [ "zswap.enabled=1" ];
+      swapDevices = [
+        {
+          device = "/swapfile";
+          size = 9 * 1024;
+        }
+      ];
     }
 
-    { networking.hostName = "pevensey";
+    {
+      networking.hostName = "pevensey";
       networking.networkmanager.enable = true;
       services.avahi = {
         enable = true;
@@ -45,15 +55,18 @@
       };
     }
 
-    { hardware.bluetooth.enable = true;
+    {
+      hardware.bluetooth.enable = true;
       hardware.bluetooth.powerOnBoot = true;
     }
 
-    { time.timeZone = "America/Toronto";
+    {
+      time.timeZone = "America/Toronto";
       i18n.defaultLocale = "en_CA.UTF-8";
     }
 
-    { services.xserver.enable = true;
+    {
+      services.xserver.enable = true;
       services.xserver.xkb = {
         layout = "us";
         variant = "";
@@ -62,21 +75,27 @@
 
     { services.switcherooControl.enable = true; }
 
-    { services.power-profiles-daemon.enable = false;
+    {
+      services.power-profiles-daemon.enable = false;
       services.tlp.enable = true;
       powerManagement.powertop.enable = true;
     }
 
-    { services.printing.enable = true;
+    {
+      services.printing.enable = true;
       hardware.sane.extraBackends = [ pkgs.sane-airscan ];
       environment.systemPackages = [
         (pkgs.kdePackages.skanpage.override {
-          tesseractLanguages = ["eng" "fra"];
+          tesseractLanguages = [
+            "eng"
+            "fra"
+          ];
         })
       ];
     }
 
-    { hardware.pulseaudio.enable = false;
+    {
+      hardware.pulseaudio.enable = false;
       security.rtkit.enable = true;
       services.pipewire = {
         enable = true;
@@ -86,14 +105,15 @@
       };
     }
 
-    { services.undervolt = {
+    {
+      services.undervolt = {
         enable = true;
         coreOffset = -100;
       };
     }
 
-
-    { networking.hostId = "4a9dbe3c";
+    {
+      networking.hostId = "4a9dbe3c";
       boot.supportedFilesystems = {
         ext = true;
         xfs = true;
@@ -112,32 +132,42 @@
       ];
     }
 
-    { users.users.vasi = {
+    {
+      users.users.vasi = {
         isNormalUser = true;
         description = "Dave Vasilevsky";
-        extraGroups = [ "networkmanager" "wheel" "ydotool" ];
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "ydotool"
+        ];
         shell = pkgs.zsh;
       };
     }
 
-    { virtualisation.vmware.host.enable = true;
+    {
+      virtualisation.vmware.host.enable = true;
       virtualisation.vmware.host.package = pkgs.vmware-workstation.override {
         enableMacOSGuests = true;
       };
 
     }
 
-    { services.displayManager.sddm.enable = true;
+    {
+      services.displayManager.sddm.enable = true;
       services.desktopManager.plasma6.enable = true;
-      environment.systemPackages = with pkgs; with kdePackages; [
-        qtbase
-        ksshaskpass
-        emote
-      ];
+      environment.systemPackages =
+        with pkgs;
+        with kdePackages;
+        [
+          qtbase
+          ksshaskpass
+          emote
+        ];
     }
 
-
-    { programs = {
+    {
+      programs = {
         firefox.enable = true;
         git.enable = true;
         zsh.enable = true;
@@ -163,6 +193,8 @@
         # Dev
         kdePackages.kate
         vscode-fhs
+        nixd
+        nixfmt-rfc-style
 
         # Misc
         libreoffice
