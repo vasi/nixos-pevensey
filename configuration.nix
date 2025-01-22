@@ -129,6 +129,7 @@
     { services.displayManager.sddm.enable = true;
       services.desktopManager.plasma6.enable = true;
       environment.systemPackages = with pkgs; with kdePackages; [
+        qtbase
         ksshaskpass
         emote
         kaccounts-integration
