@@ -150,6 +150,8 @@
         rclone
         ripgrep
         ncdu
+        pixz
+        pv
 
         # Admin
         kdePackages.filelight
