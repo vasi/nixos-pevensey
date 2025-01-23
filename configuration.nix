@@ -8,6 +8,7 @@ in
     ./hardware-configuration.nix
     ./modules/hardware.nix
     ./modules/overlays.nix
+    ./modules/samba.nix
 
     {
       # Basic settings
