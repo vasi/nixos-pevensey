@@ -6,135 +6,22 @@ in
   imports = [
     <nixos-hardware/dell/xps/15-7590/nvidia>
     ./hardware-configuration.nix
-    ./overlays.nix
+    ./modules/hardware.nix
+    ./modules/overlays.nix
 
     {
-      # Original release, used for state locations. Don't change!
-      system.stateVersion = "24.11";
-
+      # Basic settings
+      system.stateVersion = "24.11"; # Affects Nix state locations. Don't change!
       nixpkgs.config.allowUnfree = true;
     }
 
-    {
-      boot.loader.systemd-boot.enable = true;
-      boot.loader.systemd-boot.configurationLimit = 20;
-      boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
-      boot.loader.efi.efiSysMountPoint = "/efi";
-      boot.loader.efi.canTouchEfiVariables = false;
-    }
-
-    { boot.initrd.systemd.enable = true; }
-
-    {
-      boot.plymouth.enable = true;
-      boot.initrd.verbose = false;
-      boot.consoleLogLevel = 0;
-      boot.kernelParams = [
-        "quiet"
-        "udev.log_level=3"
-      ];
-    }
-
-    {
-      boot.kernelParams = [ "zswap.enabled=1" ];
-      swapDevices = [
-        {
-          device = "/swapfile";
-          size = 9 * 1024;
-        }
-      ];
-    }
-
-    {
-      networking.hostName = "pevensey";
-      networking.networkmanager.enable = true;
-      services.avahi = {
-        enable = true;
-        nssmdns4 = true;
-        publish = {
-          enable = true;
-          addresses = true;
-        };
-      };
-    }
-
-    {
-      hardware.bluetooth.enable = true;
-      hardware.bluetooth.powerOnBoot = true;
-    }
-
+    # Internationalization
     {
       time.timeZone = "America/Toronto";
       i18n.defaultLocale = "en_CA.UTF-8";
     }
 
-    {
-      services.xserver.enable = true;
-      services.xserver.xkb = {
-        layout = "us";
-        variant = "";
-      };
-    }
-
-    { services.switcherooControl.enable = true; }
-
-    {
-      services.power-profiles-daemon.enable = false;
-      services.tlp.enable = true;
-      powerManagement.powertop.enable = true;
-    }
-
-    {
-      services.printing.enable = true;
-      hardware.sane.extraBackends = [ pkgs.sane-airscan ];
-      environment.systemPackages = [
-        (pkgs.kdePackages.skanpage.override {
-          tesseractLanguages = [
-            "eng"
-            "fra"
-          ];
-        })
-      ];
-    }
-
-    {
-      hardware.pulseaudio.enable = false;
-      security.rtkit.enable = true;
-      services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-      };
-    }
-
-    {
-      services.undervolt = {
-        enable = true;
-        coreOffset = -100;
-      };
-    }
-
-    {
-      networking.hostId = "4a9dbe3c";
-      boot.supportedFilesystems = {
-        ext = true;
-        xfs = true;
-        btrfs = true;
-        vfat = true;
-        ntfs = true;
-        exfat = true;
-        apfs = true;
-        zfs = true;
-      };
-      environment.systemPackages = with pkgs; [
-        parted
-        gparted
-        gptfdisk
-        hfsprogs
-      ];
-    }
-
+    # Users
     {
       users.users.vasi = {
         isNormalUser = true;
@@ -148,6 +35,7 @@ in
       };
     }
 
+    # Virtualisation
     {
       virtualisation.vmware.host.enable = true;
       virtualisation.vmware.host.package = pkgs.vmware-workstation.override {
@@ -156,6 +44,7 @@ in
 
     }
 
+    # Desktop
     {
       services.displayManager.sddm.enable = true;
       services.desktopManager.plasma6.enable = true;
@@ -169,8 +58,22 @@ in
         ];
     }
 
+    # Emulation
     {
       boot.kernel.sysctl."vm.mmap_min_addr" = 0; # for sheepshaver
+      environment.systemPackages =
+        with pkgs;
+        with myPkgs;
+        [
+          minivmac
+          basiliskii
+          sheepshaver
+
+        ];
+    }
+
+    # Apps
+    {
       programs = {
         firefox.enable = true;
         git.enable = true;
@@ -201,17 +104,13 @@ in
         nixd
         nixfmt-rfc-style
 
-        # Emu
-        minivmac
-        basiliskii
-        myPkgs.sheepshaver
-
         # Misc
         libreoffice
         kdePackages.filelight
       ];
     }
 
+    # Services
     { services.openssh.enable = true; }
   ];
 }
