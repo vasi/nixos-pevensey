@@ -87,33 +87,38 @@ in
         direnv.enable = true;
         steam.enable = true;
       };
-      environment.systemPackages = with pkgs; [
-        # CLI
-        file
-        rclone
-        ripgrep
-        ncdu
-        pixz
-        pv
-        killall
+      environment.systemPackages =
+        with pkgs;
+        with myPkgs;
+        [
+          # CLI
+          file
+          rclone
+          ripgrep
+          ncdu
+          pixz
+          pv
+          killall
+          lzopfs
 
-        # Net
-        google-chrome
-        signal-desktop
-        zoom-us
-        vlc
+          # Net
+          google-chrome
+          signal-desktop
+          zoom-us
+          vlc
 
-        # Dev
-        kdePackages.kate
-        vscode-fhs
-        nixd
-        nixfmt-rfc-style
-        jetbrains.idea-ultimate
+          # Dev
+          kdePackages.kate
+          vscode-fhs
+          nixd
+          nixfmt-rfc-style
+          jetbrains.idea-ultimate
+          cntr
 
-        # Misc
-        libreoffice
-        kdePackages.filelight
-      ];
+          # Misc
+          libreoffice
+          kdePackages.filelight
+        ];
     }
 
     # Services
