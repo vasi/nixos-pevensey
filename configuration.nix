@@ -58,6 +58,11 @@ in
         ];
     }
 
+    # nix-ld
+    {
+      programs.nix-ld.enable = true;
+    }
+
     # Emulation
     {
       boot.kernel.sysctl."vm.mmap_min_addr" = 0; # for sheepshaver
@@ -103,6 +108,7 @@ in
         vscode-fhs
         nixd
         nixfmt-rfc-style
+        jetbrains.idea-ultimate
 
         # Misc
         libreoffice
