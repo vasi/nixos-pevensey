@@ -47,6 +47,7 @@
           addresses = true;
         };
       };
+      networking.firewall.checkReversePath = false;
     }
 
     # Bluetooth

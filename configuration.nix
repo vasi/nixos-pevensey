@@ -112,6 +112,7 @@ in
           signal-desktop
           zoom-us
           vlc
+          qbittorrent
 
           # Dev
           kdePackages.kate
