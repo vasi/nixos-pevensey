@@ -122,6 +122,7 @@ in
           # Misc
           libreoffice
           kdePackages.filelight
+          deja-dup
         ];
     }
 

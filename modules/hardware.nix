@@ -130,6 +130,7 @@
         ];
       programs.fuse.userAllowOther = true;
       programs.nbd.enable = true;
+      services.gvfs.enable = true;
     }
   ];
 }
