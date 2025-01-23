@@ -1,4 +1,7 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
+let
+  myPkgs = import ./packages/default.nix { inherit pkgs; };
+in
 {
   imports = [
     <nixos-hardware/dell/xps/15-7590/nvidia>
@@ -167,6 +170,7 @@
     }
 
     {
+      boot.kernel.sysctl."vm.mmap_min_addr" = 0; # for sheepshaver
       programs = {
         firefox.enable = true;
         git.enable = true;
@@ -183,6 +187,7 @@
         ncdu
         pixz
         pv
+        killall
 
         # Net
         google-chrome
@@ -198,6 +203,8 @@
 
         # Emu
         minivmac
+        basiliskii
+        myPkgs.sheepshaver
 
         # Misc
         libreoffice

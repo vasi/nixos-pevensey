@@ -5,8 +5,7 @@
     # https://github.com/NixOS/nixpkgs/pull/375411
     (final: prev: {
       switcheroo-control = prev.switcheroo-control.overrideAttrs (old: {
-        nativeBuildInputs = old.nativeBuildInputs ++
-          [ prev.wrapGAppsNoGuiHook ];
+        nativeBuildInputs = old.nativeBuildInputs ++ [ prev.wrapGAppsNoGuiHook ];
       });
     })
 
@@ -19,11 +18,47 @@
             hash = "sha256-OG3vkGaBkeCTDydz6bdWOZpLjsQCdgOREolW7AKjWJM=";
           })
         ];
-        preFixup = old.preFixup + ''
-          makeWrapperArgs+=(--prefix PATH : ${
-            lib.makeBinPath [ prev.ydotool ]
-          })
+        preFixup =
+          old.preFixup
+          + ''
+            makeWrapperArgs+=(--prefix PATH : ${lib.makeBinPath [ prev.ydotool ]})
+          '';
+      });
+    })
+
+    # Enable JIT in basiliskii, and use newer checkout
+    (final: prev: {
+      basiliskii = prev.basiliskii.overrideAttrs (old: {
+        version = "unstable-2025-01-22";
+        src = old.src // {
+          rev = "63e28afb8e76f428a2bfac63942ea47982925ab8";
+        };
+        nativeBuildInputs = old.nativeBuildInputs ++ [
+          prev.copyDesktopItems
+          prev.libicns
+        ];
+        configureFlags = old.configureFlags ++ [
+          "--enable-jit-compiler"
+        ];
+        enableParallelBuilding = true;
+        postInstall = ''
+          icns2png -x ../MacOSX/BasiliskII.icns
+          for size in 16 32 64 128 256 512 1024; do
+            install -Dm444 BasiliskII_"$size"x"$size"x32.png "$out/share/icons/hicolor/"$size"x"$size"/apps/basiliskii.png"
+          done
         '';
+        desktopItems = [
+          (prev.makeDesktopItem {
+            name = "Basilisk II";
+            desktopName = "Basilisk II";
+            exec = "BasiliskII";
+            icon = "basiliskii";
+            categories = [
+              "System"
+              "Emulator"
+            ];
+          })
+        ];
       });
     })
   ];
