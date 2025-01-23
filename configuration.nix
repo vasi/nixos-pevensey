@@ -77,6 +77,11 @@ in
         ];
     }
 
+    # Fuse
+    {
+      programs.fuse.userAllowOther = true;
+    }
+
     # Apps
     {
       programs = {
