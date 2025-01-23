@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, myPkgs, ... }:
 {
   imports = [
     # Bootloader
@@ -118,12 +118,16 @@
         apfs = true;
         zfs = true;
       };
-      environment.systemPackages = with pkgs; [
-        parted
-        gparted
-        gptfdisk
-        hfsprogs
-      ];
+      environment.systemPackages =
+        with pkgs;
+        with myPkgs;
+        [
+          parted
+          gparted
+          gptfdisk
+          hfsprogs
+          partclone-utils
+        ];
       programs.fuse.userAllowOther = true;
       programs.nbd.enable = true;
     }

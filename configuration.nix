@@ -14,6 +14,7 @@ in
       # Basic settings
       system.stateVersion = "24.11"; # Affects Nix state locations. Don't change!
       nixpkgs.config.allowUnfree = true;
+      _module.args.myPkgs = myPkgs;
     }
 
     # Internationalization
