@@ -109,6 +109,7 @@ in
           zoom-us
           vlc
           qbittorrent
+          pocket-casts
 
           # Dev
           kdePackages.kate
