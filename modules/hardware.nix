@@ -124,6 +124,8 @@
         gptfdisk
         hfsprogs
       ];
+      programs.fuse.userAllowOther = true;
+      programs.nbd.enable = true;
     }
   ];
 }
