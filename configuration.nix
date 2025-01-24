@@ -5,6 +5,7 @@ in
 {
   imports = [
     <nixos-hardware/dell/xps/15-7590/nvidia>
+    <home-manager/nixos>
     ./hardware-configuration.nix
     ./modules/hardware.nix
     ./modules/overlays.nix
@@ -35,6 +36,11 @@ in
         ];
         shell = pkgs.zsh;
       };
+      home-manager.users.vasi =
+        { ... }:
+        {
+          imports = [ ./vasi/default.nix ];
+        };
     }
 
     # Virtualisation
