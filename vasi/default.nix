@@ -12,4 +12,13 @@
     username = "vasi";
     homeDirectory = "/home/vasi";
   };
+
+  programs.firefox = {
+    enable = true;
+    profiles.vasi = {
+      search.engines."Wikipedia (en)".metaData.alias = "w";
+      search.force = true;
+      extraConfig = builtins.readFile ./files/user.js;
+    };
+  };
 }
