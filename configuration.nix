@@ -36,11 +36,15 @@ in
         ];
         shell = pkgs.zsh;
       };
-      home-manager.users.vasi =
-        { ... }:
-        {
-          imports = [ ./vasi/default.nix ];
-        };
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        users.vasi =
+          { ... }:
+          {
+            imports = [ ./vasi/default.nix ];
+          };
+      };
     }
 
     # Virtualisation
