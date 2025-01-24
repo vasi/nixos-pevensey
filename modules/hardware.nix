@@ -129,6 +129,11 @@
           hfsprogs
           partclone-utils
         ];
+
+      # Fix hibernation
+      boot.zfs.allowHibernation = true;
+      boot.zfs.forceImportRoot = false;
+
       programs.fuse.userAllowOther = true;
       programs.nbd.enable = true;
       services.gvfs.enable = true;
