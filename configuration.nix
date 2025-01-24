@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  myPkgs = import ./packages/default.nix { inherit pkgs; };
-in
+{ pkgs, myPkgs, ... }:
 {
   imports = [
     <nixos-hardware/dell/xps/15-7590/nvidia>
@@ -15,7 +12,7 @@ in
       # Basic settings
       system.stateVersion = "24.11"; # Affects Nix state locations. Don't change!
       nixpkgs.config.allowUnfree = true;
-      _module.args.myPkgs = myPkgs;
+      _module.args.myPkgs = import ./packages/default.nix { inherit pkgs; };
     }
 
     # Internationalization
@@ -39,11 +36,7 @@ in
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
-        users.vasi =
-          { ... }:
-          {
-            imports = [ ./vasi/default.nix ];
-          };
+        users.vasi.imports = [ ./vasi/default.nix ];
       };
     }
 
