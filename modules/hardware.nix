@@ -8,6 +8,7 @@
       boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
       boot.loader.efi.efiSysMountPoint = "/efi";
       boot.loader.efi.canTouchEfiVariables = false;
+      environment.systemPackages = [ myPkgs.refind-switch ];
     }
 
     # Boot
