@@ -63,6 +63,45 @@ in
         battery.displayBrightness = 70;
         batteryLevels.criticalAction = "hibernate";
       };
+
+      configFile = {
+        baloofilerc.General."exclude folders" = {
+          value = "$HOME/gdrive/";
+          shellExpand = true;
+        };
+        dolphinrc = {
+          ContentDisplay.DirectorySizeMode = "ContentSize";
+          General.BrowseThroughArchives = true;
+          General.ShowSelectionToggle = false;
+        };
+        katerc.General = {
+          "Startup Session" = "last";
+          "Show welcome view for new window" = false;
+        };
+        klaunchrc = {
+          # No bouncy cursor
+          BusyCursorSettings.Bouncing = false;
+          FeedbackStyle.BusyCursor = false;
+          TaskbarButtonSettings.Timeout = 2;
+        };
+        klipperrc.General.MaxClipItems = 100;
+        krunnerrc.Plugins = {
+          browserhistoryEnabled = false;
+          krunner_bookmarksrunnerEnabled = false;
+        };
+        ktrashrc."\\/home\\/vasi\\/.local\\/share\\/Trash" = {
+          UseTimeLimit = true;
+          Days = 14;
+        };
+        kwinrc."Effect-overview".BorderActivate = 9; # No hot corner
+        plasmanotifyrc.Notifications.PopupPosition = "TopRight";
+        plasmaparc.General.AudioFeedback = false;
+        kxkbrc.Layout = {
+          Options = "compose:ralt";
+          ResetOldOptions = true; # Necessary for other settings to work
+        };
+      };
+      dataFile."dolphin/view_properties/global/.directory".Dolphin.SortFoldersFirst = false;
     };
 
     konsole = {
