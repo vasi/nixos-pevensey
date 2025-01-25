@@ -61,5 +61,21 @@
         ];
       });
     })
+
+    # Export icon from Mini vMac
+    (final: prev: {
+      minivmac = prev.minivmac.overrideAttrs (old: {
+        enableParallelBuilding = true;
+        nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.libicns ];
+        installPhase = # Doesn't call hooks!
+          old.installPhase
+          + ''
+            icns2png -x src/ICONAPPO.icns
+            for size in 16 32; do
+              install -Dm444 ICONAPPO_"$size"x"$size"x8.png "$out/share/icons/hicolor/"$size"x"$size"/apps/minivmac.png"
+            done
+          '';
+      });
+    })
   ];
 }
