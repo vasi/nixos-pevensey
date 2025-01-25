@@ -1,4 +1,3 @@
-{ ... }:
 {
   xdg.desktopEntries.minivmac = {
     name = "Mini vMac";
