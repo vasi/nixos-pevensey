@@ -3,6 +3,8 @@ let
   wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Flow";
 in
 {
+  imports = [ ./plasma-hardware.nix ];
+
   programs = {
     plasma = {
       enable = true;
@@ -37,31 +39,11 @@ in
       workspace.wallpaper = wallpaper;
       kscreenlocker.appearance.wallpaper = wallpaper;
 
-      input.touchpads = [
-        {
-          name = "SYNA2393:00 06CB:7A13 Touchpad";
-          vendorId = "06cb";
-          productId = "7a13";
-          naturalScroll = true;
-          rightClickMethod = "twoFingers";
-        }
-      ];
       shortcuts.kwin."Window Maximize" = "Meta+Up";
       hotkeys.commands.emote = {
         name = "Launch Emote";
         key = "Meta+E";
         command = "emote";
-      };
-
-      powerdevil = {
-        AC.whenSleepingEnter = "standbyThenHibernate";
-        battery.whenSleepingEnter = "standbyThenHibernate";
-        lowBattery.whenSleepingEnter = "standbyThenHibernate";
-
-        AC.autoSuspend.action = "nothing";
-        AC.turnOffDisplay.idleTimeout = 1800;
-        battery.displayBrightness = 70;
-        batteryLevels.criticalAction = "hibernate";
       };
 
       configFile = {
@@ -96,10 +78,6 @@ in
         kwinrc."Effect-overview".BorderActivate = 9; # No hot corner
         plasmanotifyrc.Notifications.PopupPosition = "TopRight";
         plasmaparc.General.AudioFeedback = false;
-        kxkbrc.Layout = {
-          Options = "compose:ralt";
-          ResetOldOptions = true; # Necessary for other settings to work
-        };
       };
       dataFile."dolphin/view_properties/global/.directory".Dolphin.SortFoldersFirst = false;
     };
