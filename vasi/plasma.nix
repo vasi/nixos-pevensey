@@ -115,4 +115,10 @@ in
       editor.indent.width = 2;
     };
   };
+
+  home.sessionVariables = {
+    SSH_ASKPASS = "${pkgs.ksshaskpass}/bin/ksshaskpass";
+    GIT_ASKPASS = "${pkgs.ksshaskpass}/bin/ksshaskpass";
+    SSH_ASKPASS_REQUIRE = "prefer";
+  };
 }

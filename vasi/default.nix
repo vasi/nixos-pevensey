@@ -6,6 +6,7 @@
     ./code.nix
     ./plasma.nix
     ./macemu.nix
+    ./deja-dup.nix
   ];
 
   home = {
