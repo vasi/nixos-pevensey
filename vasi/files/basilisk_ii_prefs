@@ -1,0 +1,37 @@
+disk /home/vasi/macemu/Images/os7.6.sparsebundle
+disk /home/vasi/macemu/Images/apps68k.sparsebundle
+disk /home/vasi/macemu/Images/apps68k-games.sparsebundle
+extfs /Users/vasi/Desktop
+screen win/1024/768
+seriala
+serialb
+ether slirp
+udptunnel false
+udpport 6066
+rom /home/vasi/macemu/ROMS/Quadra.ROM
+bootdrive 0
+bootdriver 0
+ramsize 268435456
+frameskip 0
+modelid 14
+cpu 4
+fpu true
+nocdrom false
+nosound false
+noclipconversion false
+nogui false
+jit true
+jitfpu false
+jitdebug false
+jitcachesize 8192
+jitlazyflush true
+jitinline true
+keyboardtype 5
+keycodes false
+mousewheelmode 1
+mousewheellines 3
+dsp /dev/dsp
+mixer /dev/mixer
+ignoresegv false
+idlewait true
+nogui true

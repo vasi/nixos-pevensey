@@ -5,6 +5,7 @@
     ./cli.nix
     ./code.nix
     ./plasma.nix
+    ./macemu.nix
   ];
 
   home = {

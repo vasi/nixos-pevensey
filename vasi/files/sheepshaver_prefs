@@ -1,0 +1,35 @@
+disk /home/vasi/macemu/Images/os9.sparsebundle
+disk /home/vasi/macemu/Images/appsPPC.sparsebundle
+disk /home/vasi/macemu/Images/apps68k.sparsebundle
+disk /home/vasi/macemu/Images/apps68k-games.sparsebundle
+extfs /Users/vasi/Desktop
+screen win/1280/800
+windowmodes 0
+screenmodes 0
+seriala
+serialb
+rom /home/vasi/macemu/ROMS/PowerPC.ROM
+bootdrive 0
+bootdriver 0
+ramsize 536870912
+frameskip 0
+gfxaccel true
+nocdrom false
+nonet false
+nosound false
+nogui false
+noclipconversion false
+ignoresegv true
+ignoreillegal true
+jit true
+jit68k true
+keyboardtype 5
+ether slirp
+keycodes false
+keycodefile
+mousewheelmode 0
+mousewheellines 3
+dsp /dev/dsp
+mixer /dev/mixer
+ignoresegv true
+idlewait true
