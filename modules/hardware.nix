@@ -1,29 +1,8 @@
-{ pkgs, myPkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    # Bootloader
-    {
-      boot.loader.systemd-boot.enable = true;
-      boot.loader.systemd-boot.configurationLimit = 20;
-      boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
-      boot.loader.efi.efiSysMountPoint = "/efi";
-      boot.loader.efi.canTouchEfiVariables = false;
-      environment.systemPackages = [ myPkgs.refind-switch ];
-    }
-
-    # Boot
-    { boot.initrd.systemd.enable = true; }
-
-    # Boot splash
-    {
-      boot.plymouth.enable = true;
-      boot.initrd.verbose = false;
-      boot.consoleLogLevel = 0;
-      boot.kernelParams = [
-        "quiet"
-        "udev.log_level=3"
-      ];
-    }
+    ./boot.nix
+    ./filesystems.nix
 
     # Swap
     {
@@ -104,39 +83,6 @@
         alsa.support32Bit = true;
         pulse.enable = true;
       };
-    }
-
-    # Filesystems
-    {
-      networking.hostId = "4a9dbe3c";
-      boot.supportedFilesystems = {
-        ext = true;
-        xfs = true;
-        btrfs = true;
-        vfat = true;
-        ntfs = true;
-        exfat = true;
-        apfs = true;
-        zfs = true;
-      };
-      environment.systemPackages =
-        with pkgs;
-        with myPkgs;
-        [
-          parted
-          gparted
-          gptfdisk
-          hfsprogs
-          partclone-utils
-        ];
-
-      # Fix hibernation
-      boot.zfs.allowHibernation = true;
-      boot.zfs.forceImportRoot = false;
-
-      programs.fuse.userAllowOther = true;
-      programs.nbd.enable = true;
-      services.gvfs.enable = true;
     }
   ];
 }

@@ -1,99 +1,46 @@
 { pkgs, ... }:
-let
-  wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Flow";
-in
 {
-  imports = [ ./plasma-hardware.nix ];
+  imports = [
+    ./plasma-hardware.nix
+    ./plasma-desktop.nix
+  ];
 
-  programs = {
-    plasma = {
-      enable = true;
+  programs.plasma.enable = true;
 
-      workspace.theme = "breeze-dark";
+  # Dolphin
+  programs.plasma.configFile.dolphinrc = {
+    ContentDisplay.DirectorySizeMode = "ContentSize";
+    General.BrowseThroughArchives = true;
+    General.ShowSelectionToggle = false;
+  };
+  programs.plasma.dataFile."dolphin/view_properties/global/.directory".Dolphin.SortFoldersFirst =
+    false;
 
-      panels = [
-        {
-          location = "left";
-          screen = "all";
-          widgets = [
-            { kickoff.icon = "nix-snowflake"; }
-            {
-              iconTasks.launchers = [
-                "applications:org.kde.dolphin.desktop"
-                "applications:firefox.desktop"
-                "applications:org.kde.konsole.desktop"
-                "applications:code.desktop"
-              ];
-            }
-            { systemTray.items.shown = [ "org.kde.plasma.bluetooth" ]; }
-            {
-              digitalClock = {
-                time.format = "24h";
-                date.enable = false;
-              };
-            }
-          ];
-        }
-      ];
-
-      workspace.wallpaper = wallpaper;
-      kscreenlocker.appearance.wallpaper = wallpaper;
-
-      shortcuts.kwin."Window Maximize" = "Meta+Up";
-      hotkeys.commands.emote = {
-        name = "Launch Emote";
-        key = "Meta+E";
-        command = "emote";
-      };
-
-      configFile = {
-        baloofilerc.General."exclude folders" = {
-          value = "$HOME/gdrive/";
-          shellExpand = true;
-        };
-        dolphinrc = {
-          ContentDisplay.DirectorySizeMode = "ContentSize";
-          General.BrowseThroughArchives = true;
-          General.ShowSelectionToggle = false;
-        };
-        katerc.General = {
-          "Startup Session" = "last";
-          "Show welcome view for new window" = false;
-        };
-        klaunchrc = {
-          # No bouncy cursor
-          BusyCursorSettings.Bouncing = false;
-          FeedbackStyle.BusyCursor = false;
-          TaskbarButtonSettings.Timeout = 2;
-        };
-        klipperrc.General.MaxClipItems = 100;
-        krunnerrc.Plugins = {
-          browserhistoryEnabled = false;
-          krunner_bookmarksrunnerEnabled = false;
-        };
-        ktrashrc."\\/home\\/vasi\\/.local\\/share\\/Trash" = {
-          UseTimeLimit = true;
-          Days = 14;
-        };
-        kwinrc."Effect-overview".BorderActivate = 9; # No hot corner
-        plasmanotifyrc.Notifications.PopupPosition = "TopRight";
-        plasmaparc.General.AudioFeedback = false;
-      };
-      dataFile."dolphin/view_properties/global/.directory".Dolphin.SortFoldersFirst = false;
-    };
-
-    konsole = {
-      enable = true;
-      defaultProfile = "vasi";
-      profiles.vasi.extraConfig.Scrolling.HistoryMode = 2;
-    };
-
-    kate = {
-      enable = true;
-      editor.indent.width = 2;
-    };
+  # Kate
+  programs.kate = {
+    enable = true;
+    editor.indent.width = 2;
+  };
+  programs.plasma.configFile.katerc.General = {
+    "Startup Session" = "last";
+    "Show welcome view for new window" = false;
   };
 
+  # Konsole
+  programs.konsole = {
+    enable = true;
+    defaultProfile = "vasi";
+    profiles.vasi.extraConfig.Scrolling.HistoryMode = 2;
+  };
+
+  # Emote
+  programs.plasma.hotkeys.commands.emote = {
+    name = "Launch Emote";
+    key = "Meta+E";
+    command = "emote";
+  };
+
+  # ksshaskpass
   home.sessionVariables = {
     SSH_ASKPASS = "${pkgs.ksshaskpass}/bin/ksshaskpass";
     GIT_ASKPASS = "${pkgs.ksshaskpass}/bin/ksshaskpass";
